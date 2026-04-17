@@ -127,23 +127,16 @@ function QuestionCard({ question, topicId }) {
         </div>
       )}
 
-      {/* Expand / Show answer controls for non-MCQ questions */}
+      {/* Show answer toggle — for non-MCQ questions */}
       {!isOutputMCQ && (
         <div className="mt-5 flex flex-wrap items-center gap-3">
           <button
             type="button"
-            onClick={() => { setExpanded((c) => !c); setShowAnswer(true); }}
+            onClick={() => { setShowAnswer((c) => !c); setExpanded(true); }}
             className="primary-pill inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold"
           >
-            {expanded ? 'Collapse' : 'Expand details'}
-            {expanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-          </button>
-          <button
-            type="button"
-            onClick={() => { setShowAnswer((c) => !c); setExpanded(true); }}
-            className="ghost-chip px-4 py-2 text-sm font-semibold"
-          >
-            {showAnswer ? 'Hide answer' : 'Show answer'}
+            {showAnswer ? 'Hide Answer' : 'Show Answer'}
+            {showAnswer ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
           </button>
         </div>
       )}
