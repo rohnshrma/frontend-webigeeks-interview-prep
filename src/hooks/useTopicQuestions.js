@@ -78,5 +78,5 @@ export function useTopicQuestions(trackId, topicId) {
     setQuestions(filtered);
   }, [rawQuestions, state.searchTerm, state.experienceFilter]);
 
-  return { track, topic, questions, loading, error };
+  return { track, topic, questions, rawQuestions, loading, error };
 }

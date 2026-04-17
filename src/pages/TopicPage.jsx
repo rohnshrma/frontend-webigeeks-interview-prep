@@ -18,7 +18,7 @@ const FILTER_OPTIONS = [
 function TopicPage() {
   const { trackId, topicId } = useParams();
   const { dispatch, state, isAuthenticated } = useAppContext();
-  const { track, topic, questions } = useTopicQuestions(trackId, topicId);
+  const { track, topic, questions, rawQuestions } = useTopicQuestions(trackId, topicId);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -30,9 +30,10 @@ function TopicPage() {
 
   const completed = state.completedTopics.includes(topic.id);
 
-  // Count questions per experience level for the filter badges
-  const counts = { all: topic.questions.length, fresher: 0, junior: 0, mid: 0 };
-  topic.questions.forEach((q) => {
+  // Count questions per experience level for the filter badges using actual fetched data
+  const dynamicQuestions = rawQuestions || topic.questions;
+  const counts = { all: dynamicQuestions.length, fresher: 0, junior: 0, mid: 0 };
+  dynamicQuestions.forEach((q) => {
     if (counts[q.experienceLevel] !== undefined) counts[q.experienceLevel]++;
   });
 
@@ -150,10 +151,10 @@ function TopicPage() {
           {isAuthenticated && (
             <div className="mt-5 flex flex-wrap gap-4 border-t border-slate-100 dark:border-slate-800 pt-4">
               {[
-                { label: 'Starred',  count: topic.questions.filter((q) => state.questionActions?.[q.id]?.starred).length,  color: 'text-amber-600' },
-                { label: 'Correct',  count: topic.questions.filter((q) => state.questionActions?.[q.id]?.correct).length,   color: 'text-emerald-600' },
-                { label: 'Doubtful', count: topic.questions.filter((q) => state.questionActions?.[q.id]?.doubtful).length,  color: 'text-rose-600' },
-                { label: 'Saved',    count: topic.questions.filter((q) => state.savedQuestions.includes(q.id)).length,       color: 'text-sky-600' },
+                { label: 'Starred',  count: dynamicQuestions.filter((q) => state.questionActions?.[q.id]?.starred).length,  color: 'text-amber-600' },
+                { label: 'Correct',  count: dynamicQuestions.filter((q) => state.questionActions?.[q.id]?.correct).length,   color: 'text-emerald-600' },
+                { label: 'Doubtful', count: dynamicQuestions.filter((q) => state.questionActions?.[q.id]?.doubtful).length,  color: 'text-rose-600' },
+                { label: 'Saved',    count: dynamicQuestions.filter((q) => state.savedQuestions.includes(q.id)).length,       color: 'text-sky-600' },
               ].map(({ label, count, color }) => (
                 <div key={label} className="text-center">
                   <p className={`text-2xl font-extrabold ${color}`}>{count}</p>
