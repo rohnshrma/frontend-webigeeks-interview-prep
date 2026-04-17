@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-slate-100 text-slate-900 font-sans antialiased;
+  background-image:
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.1), transparent 24%),
+    radial-gradient(circle at top right, rgba(249, 115, 22, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(255, 252, 248, 1), rgba(244, 247, 251, 1));
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body.dark {
+  @apply bg-slate-950 text-slate-100;
+  background-image:
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.15), transparent 22%),
+    radial-gradient(circle at top right, rgba(249, 115, 22, 0.12), transparent 20%),
+    linear-gradient(180deg, rgba(2, 6, 23, 1), rgba(15, 23, 42, 1));
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 999px;
+}
+
+::selection {
+  background: rgba(125, 180, 255, 0.32);
+  color: #0f172a;
+}
+
+.panel-surface {
+  @apply border border-slate-200 bg-white/95 backdrop-blur-xl shadow-panel;
+  box-shadow:
+    0 18px 50px rgba(15, 23, 42, 0.07),
+    0 2px 12px rgba(14, 165, 233, 0.04);
+}
+
+body.dark .panel-surface {
+  @apply border-slate-800/80 bg-slate-900/80;
+}
+
+.soft-hover {
+  @apply transition-all duration-200 ease-out;
+}
+
+.soft-hover:hover {
+  transform: translateY(-2px);
+}
+
+.ghost-chip {
+  @apply rounded-full border border-slate-200 bg-white text-slate-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-950 hover:shadow-md;
+}
+
+body.dark .ghost-chip {
+  @apply border-slate-700 bg-slate-900 text-slate-200 hover:border-sky-500/40 hover:bg-slate-800 hover:text-white;
+}
+
+.primary-pill {
+  @apply rounded-full bg-slate-900 text-white shadow-lg shadow-slate-900/10 transition-all duration-200 hover:-translate-y-0.5 hover:bg-sky-600 hover:shadow-sky-500/20;
+}
+
+body.dark .primary-pill {
+  @apply bg-slate-100 text-slate-950 shadow-none hover:bg-sky-300;
+}

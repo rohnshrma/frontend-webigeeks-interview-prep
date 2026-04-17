@@ -1,0 +1,14 @@
+# dependencies
+node_modules/
+
+# production build
+/dist
+
+# environment variables (set in Netlify dashboard instead)
+.env
+.env.local
+.env.production
+
+# misc
+.DS_Store
+*.log

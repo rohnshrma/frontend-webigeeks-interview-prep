@@ -1,0 +1,6 @@
+# Netlify redirects — required for React Router (client-side routing)
+# Without this, refreshing any page other than / returns Netlify's 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
