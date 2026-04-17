@@ -16,39 +16,10 @@
  *  output?        — expected output text (output questions)
  */
 
-import { htmlQuestions, cssQuestions, flexboxQuestions } from './questions/html_css_flex.js';
-import { javascriptQuestions, reactQuestions } from './questions/js_react.js';
-import { nodejsQuestions, expressjsQuestions } from './questions/node_express.js';
-import { mongodbQuestions, mongooseQuestions } from './questions/mongodb_mongoose.js';
-import { authQuestions, bcryptQuestions, jwtQuestions, passportLocalQuestions, passportGoogleQuestions } from './questions/auth_security.js';
-import { excelQuestions, sqlQuestions } from './questions/excel_sql.js';
-import { pythonAnalyticsQuestions, pandasQuestions, numpyFullQuestions, matplotlibFullQuestions, tableauFullQuestions, powerBIFullQuestions } from './questions/analytics.js';
+import compiledQA from './compiledQuestions.json';
 
 /** Map topic ID → array of questions */
-export const TOPIC_QUESTIONS = {
-  'html':                   htmlQuestions,
-  'css':                    cssQuestions,
-  'flexbox':                flexboxQuestions,
-  'javascript':             javascriptQuestions,
-  'react':                  reactQuestions,
-  'node-js':                nodejsQuestions,
-  'express-js':             expressjsQuestions,
-  'mongodb':                mongodbQuestions,
-  'mongoose':               mongooseQuestions,
-  'authentication':         authQuestions,
-  'bcrypt':                 bcryptQuestions,
-  'jwt':                    jwtQuestions,
-  'passport-local':         passportLocalQuestions,
-  'passport-google-oauth20':passportGoogleQuestions,
-  'excel':                  excelQuestions,
-  'sql':                    sqlQuestions,
-  'python':                 pythonAnalyticsQuestions,
-  'pandas':                 pandasQuestions,
-  'numpy':                  numpyFullQuestions,
-  'matplotlib':             matplotlibFullQuestions,
-  'tableau':                tableauFullQuestions,
-  'power-bi':               powerBIFullQuestions,
-};
+export const TOPIC_QUESTIONS = compiledQA;
 
 /** Get questions for a topic, optionally filtered by experience level */
 export function getQuestionsForTopic(topicId, experienceFilter = 'all') {
